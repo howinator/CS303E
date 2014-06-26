@@ -18,7 +18,7 @@ def main():
 
     future += today
     if (future >= 7):
-        future -= 7
+        future %= 7
 
     if (future == 0):
         fustr = 'Sunday'
