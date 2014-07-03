@@ -20,8 +20,49 @@ def main():
     year, month, day = getDay()
 
     # Modify input for algorithm
-    a = month - 12
-    if 
+    a = month - 2
+    # Fix month and year if najuary or february
+    if (a <= 0):
+        a += 12
+        year -= 1
+    # Fix year values
+    d = year // 100
+    c = year - d * 100
+    # Set day variable
+    b = day
+    
+    # Run through the day finding algorithm
+    dayint = computeAlgo(a, b, c, d)
+
+    # Get output string from dayint returned by algorithm
+    if (dayint == 0):
+        print ("The day is Sunday.")
+    elif (dayint == 1):
+        print ("The day is Monday.")
+    elif (dayint == 2):
+        print ("The day is Tuesday.")
+    elif (dayint == 3):
+        print ("The day is Wednesday.")
+    elif (dayint == 4):
+        print ("The day is Thursday.")
+    elif (dayint == 5):
+        print ("The day is Friday.")
+    elif (dayint == 6):
+        print ("The day is Saturday.")
+    else:
+        print ("Sorry - there was an error.")
+
+def computeAlgo(a, b, c, d):
+    # This function just runs through the day-finding algorithm, and
+    # returns an number corresponding to the day of the week
+    w = (13 * a - 1) // 5
+    x = c // 4
+    y = d // 4
+    z = w + x + y + b + c - 2 * d
+    r = z % 7
+    r = (r + 7) % 7
+
+    return r
 
 def getDay():
 
@@ -63,7 +104,7 @@ def getDay():
         # Checks for Febuary
         elif ( month == 2 ):
             # Checks for leap year
-            if ( (month % 4 == 0 and month % 100 != 0) or (month % 400 = 0) ):
+            if ( (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0) ):
                 leapyear = True
             else:
                 leapyear = False
@@ -75,10 +116,10 @@ def getDay():
             elif ( not leapyear and (day >= 1 and day <= 28) ):
                 dayflag = False
         # If dayflag is false, print error message and start over
-        if (not dayflag):
+        if (dayflag):
             print ("Invalid day - try again.")
             print ("")
 
     return year, month, day
 
-    year
+main()
